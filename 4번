@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <map>
+#include <algorithm> 
+#include <iterator> 
+using namespace std;
+
+void printInt(int n) {
+    cout << n << " ";
+}
+
+int main() {
+    vector<int> vec = {5, 3, 9, 1, 7};
+    cout << "Vector elements (original): ";
+    for_each(vec.begin(), vec.end(), printInt);
+    cout << endl;
+
+    sort(vec.begin(), vec.end());
+    cout << "Vector elements (sorted): ";
+    for_each(vec.begin(), vec.end(), printInt);
+    cout << endl;
+
+    list<int> lst = {8, 2, 6, 4};
+    cout << "List elements: ";
+    for_each(lst.begin(), lst.end(), printInt);
+    cout << endl;
+
+    map<string, int> m;
+    m["apple"] = 3;
+    m["banana"] = 5;
+    m["cherry"] = 2;
+
+    cout << "Map elements:\n";
+    for (auto &pair : m) {
+        cout << pair.first << ": " << pair.second << endl;
+    }
+
+    return 0;
+}
