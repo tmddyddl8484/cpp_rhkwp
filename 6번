@@ -1,0 +1,35 @@
+#include <iostream>
+#include <opencv2/opencv.hpp>
+using namespace std;
+using namespace cv;
+
+int main() {
+    VideoCapture cap(0);
+
+    if (!cap.isOpened()) {
+        cerr << "Error: Cannot open the video camera" << endl;
+        return -1;
+    }
+
+    Mat frame;
+    while (true) {
+        cap >> frame; 
+        if (frame.empty()) {
+            cerr << "Error: Blank frame grabbed" << endl;
+            break;
+        }
+
+        imshow("Webcam Feed", frame); 
+
+        if (waitKey(10) == 27) { 
+            cout << "ESC key is pressed by user. Stopping the video." << endl;
+            break;
+        }
+    }
+
+    cap.release(); 
+    destroyAllWindows(); 
+    return 0;
+}
+
+
